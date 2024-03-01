@@ -6,7 +6,7 @@
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 14:20:24 by npatron           #+#    #+#              #
-#    Updated: 2024/02/27 20:21:13 by npatron          ###   ########.fr        #
+#    Updated: 2024/02/29 19:12:25 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,10 @@ SRC = src/main.c \
 	  src/utils/get_next_line_utils.c \
 	  src/utils/get_next_line.c \
 	  src/utils/utils.c \
+	  src/parsing/parsing_arg.c \
+	  src/parsing/parsing_colors.c \
+	  src/parsing/parsing_textures.c \
+	  src/parsing/parsing.c \
 	  
 OBJ = $(SRC:.c=.o)
 

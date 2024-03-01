@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 20:19:30 by npatron           #+#    #+#             */
-/*   Updated: 2024/02/27 20:21:40 by npatron          ###   ########.fr       */
+/*   Updated: 2024/02/29 19:47:58 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,56 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+void	print_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		printf("%s", tab[i]);
+		i++;
+	}
+}
+
+int	jump_line(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[0] == '\n')
+		return (1);
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	free_data(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (data->colors)
+	{
+		while (data->colors[i])
+		{
+			free(data->colors[i]);
+			i++;
+		}
+	}
+	i = 0;
+	if (data->textures)
+	{
+		while (data->textures[i])
+		{
+			free(data->textures[i]);
+			i++;
+		}
+	}
 }
