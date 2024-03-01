@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:27:59 by npatron           #+#    #+#             */
-/*   Updated: 2024/02/29 19:41:53 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:52:01 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,8 @@ int		get_textures(t_data *data, char **argv);
 int		get_colors(t_data *data, char **argv);
 int 	condition_texture(t_data *data);
 int		error_file(t_data *data, char **argv);
+char	*skip_textures(char *s);
+char	*skip_colors(char *s);
+void	clean_tab(t_data *data);
+
 #endif

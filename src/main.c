@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:20:44 by npatron           #+#    #+#             */
-/*   Updated: 2024/02/29 19:47:29 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:54:59 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	main(int argc, char **argv)
 	init_data(data);
 	if (error_file(data, argv) == 1)
 		return (0);
+	print_tab(data->textures);
+	print_tab(data->colors);
 	free_data(data);
 	free(data);
 	return (0);
