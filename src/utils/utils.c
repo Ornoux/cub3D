@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 20:19:30 by npatron           #+#    #+#             */
-/*   Updated: 2024/02/29 19:47:58 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/07 16:13:11 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (tab);
 }
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -46,7 +46,7 @@ void	print_tab(char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		printf("%s", tab[i]);
+		printf("%s\n", tab[i]);
 		i++;
 	}
 }

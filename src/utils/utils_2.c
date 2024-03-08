@@ -6,36 +6,55 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:40:13 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/01 18:45:35 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/06 17:41:22 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-char	*skip_textures(char *s)
+int	there_is_spaces(char *s)
 {
 	int	i;
 
-	i = 2;
-	while (s[i] == ' ' && s[i])
+	i = 0;
+	while (s[i])
 	{
-		if (s[i] != ' ')
-			break ;
+		if (s[i] == ' ')
+			return (1);
 		i++;
 	}
-	return (s + i);
+	return (0);
 }
 
-char	*skip_colors(char *s)
+char	*erase_spaces(char *s)
 {
-	int	i;
+	int		i;
+	int		j;
+	int		len;
+	char	*replace;
 
-	i = 1;
-	while (s[i] == ' ' && s[i])
+	i = 0;
+	len = 0;
+	if (there_is_spaces(s) == 0)
+		return (s);
+	while (s[i])
 	{
 		if (s[i] != ' ')
-			break ;
+			len++;
 		i++;
 	}
-	return (s + i);
+	replace = malloc(sizeof(char) * (len + 1));
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		while (s[i] == ' ')
+			i++;
+		replace[j] = s[i];
+		i++;
+		j++;
+	}
+	replace[j] = '\0';
+	return (replace);
 }
+

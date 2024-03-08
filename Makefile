@@ -6,7 +6,7 @@
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 14:20:24 by npatron           #+#    #+#              #
-#    Updated: 2024/03/01 18:43:51 by npatron          ###   ########.fr        #
+#    Updated: 2024/03/07 13:48:54 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,14 @@ SRC = src/main.c \
 	  src/parsing/parsing_arg.c \
 	  src/parsing/parsing_colors.c \
 	  src/parsing/parsing_textures.c \
+	  src/parsing/parsing_map.c \
 	  src/parsing/parsing.c \
 	  src/utils/utils_2.c \
+	  src/utils/utils_3.c \
+	  src/utils/lil_atoi.c \
+	  src/utils/ft_split.c \
+	  src/utils/utils_4.c \
+	  src/utils/utils_5.c \
 	  
 OBJ = $(SRC:.c=.o)
 
