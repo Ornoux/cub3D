@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:27:59 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/07 17:17:07 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/12 20:29:01 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,16 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <limits.h>
+# include "../minilibx/mlx.h"
+# include "../minilibx/mlx_int.h"
+
+# define WIDTH 1200
+# define HEIGHT 700
+# define MOVEMENT 0.4
 
 typedef struct s_data
 {
+	int		*key;
 	int		no;
 	int		so;
 	int		we;
@@ -35,6 +42,7 @@ typedef struct s_data
 	int		sky;
 	int		bg;
 	int		start;
+	int		start_2;
 	int		end;
 	char	**map;
 	char	**textures;
@@ -44,9 +52,47 @@ typedef struct s_data
 	int		*c_floor;
 	int		*c_sky;
 	int		player;
-	int		pos_x;
-	int		pos_y;
+	int		posi_x;
+	int		posi_y;
+	void	*mlx_ptr;
+	void	*mlx_win;
+	void	*mini_wall;
+	void	*mini_floor;
+	void	*mini_player;
+	void	*img;
+
 }			t_data;
+
+
+typedef	struct	s_ray
+{
+	// Direction des rayons
+	double	dir_x;
+	double	dir_y;
+
+	// Direction du player
+	double	player_x;
+	double	player_y;
+
+	// DeltaX et DeltaY
+	double	delta_x;
+	double	delta_y;
+}				t_ray;
+
+typedef	struct	s_p
+{
+	// Positions du joueur
+	double	pos_x;
+	double	pos_y;
+
+	// Direction du player
+	double	player_x;
+	double	player_y;
+
+	// Cam
+	double	camera_x;
+	double	camera_y;
+}				t_p;
 
 
 // UTILS PART
@@ -70,6 +116,16 @@ char	*copy_string(char *s, int n);
 void	get_map(t_data *data, char **argv);
 char	*line(int n);
 int		is_good_char(t_data *data, char c, int i, int j);
+int		error_into_file(t_data *data, char **argv);
+int		check_player(char **map, int i, int j);
+
+// MLX PART
+int		ft_exit(t_data *data);
+int		key_press(int key, t_data *data);
+int		key_release(int key, t_data *data);
+int		run_data(t_data *data);
+void	mlx(t_data *data);
+void	put_img(t_data *data, void	*img, int x, int y);
 
 
 
@@ -98,7 +154,10 @@ void	len_max_map(t_data *data, char **argv);
 int		good_letters(t_data *data, char **tab);
 int		is_valid_map(t_data *data);
 int		texture_is_xpm(char *str);
-
+void	init_mlx(t_data *data);
+int		print_error(char *s);
+int		ft_strcmp(const char *s1, const char *s2);
+int		check_player(char **map, int i, int j);
 
 
 #endif

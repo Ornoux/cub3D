@@ -1,28 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/29 12:47:57 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/11 15:14:46 by npatron          ###   ########.fr       */
+/*   Created: 2024/03/12 16:03:49 by npatron           #+#    #+#             */
+/*   Updated: 2024/03/12 20:26:11 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub3D.h"
 
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	dda(t_ray *ray, t_p *p)
 {
-	unsigned int	i;
+
+	
+
+
+
+
+
+	
+}
+
+void	init_values_ray(t_ray *ray)
+{
+	
+
+
+
+	ray->delta_x = abc(1 / ray->dir_x);
+}
+
+void	raycasting(t_data *data, t_p *p)
+{
+	int	i;
 
 	i = 0;
-	while (i < n && (s1[i] || s2[i]))
+	while (i <= WIDTH)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)(s1[i]) - (unsigned char)(s2[i]));
-		i++;
+		//CALCUL RAYON
+		
+		
 	}
-	return (0);
+
 }

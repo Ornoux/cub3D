@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:08:32 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/07 16:45:56 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/11 12:33:39 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**tab_in_order(t_data *data)
 			tab[3] = ft_strdup(data->textures[i]);
 		i++;
 	}
-	tab[4] = '\0';
+	tab[4] = NULL;
 	return (tab);
 }
 
@@ -57,7 +57,7 @@ char	**color_in_order(t_data *data)
 			tab[1] = ft_strdup(data->colors[i]);
 		i++;
 	}
-	tab[2] = '\0';
+	tab[2] = NULL;
 	return (tab);
 }
 

@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:20:44 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/07 17:05:02 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/12 16:05:34 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,29 @@ void	init_data(t_data *data)
 	data->tall_map = 0;
 	data->pos_x = 0;
 	data->pos_y = 0;
+	data->player = 0;
 }
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
-
-	data = malloc(sizeof(t_data));
+	t_data	data;
+	t_p		p;
 	(void)data;
 	if (good_arg(argc, argv) == 1)
 		exit(EXIT_FAILURE);
-	init_data(data);
-	if (error_file(data, argv) == 1)
+	init_data(&data);
+	if (error_file(&data, argv) == 1)
 		return (0);
-	len_max_map(data, argv);
-	get_map(data, argv);
-	if (is_valid_map(data))
+	len_max_map(&data, argv);
+	get_map(&data, argv);
+	if (is_valid_map(&data) || error_into_file(&data, argv))
 	{
-		printf("Error.\nError into the map.\n");
+		print_error("map");
 		return (0);
 	}
-	free_data(data);
-	free(data);
+	mlx(&data);
+	// free_data(&data);
+	// free(&data);
+	exit(0);
 	return (0);
 }

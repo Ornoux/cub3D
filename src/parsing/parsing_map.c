@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:37:38 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/07 17:12:03 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/12 14:02:41 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	len_max_map(t_data *data, char **argv)
 		i++;
 	}
 	data->len_max = len;
+	data->start_2 = data->start;
 }
 
 void	get_map(t_data *data, char **argv)
@@ -101,7 +102,7 @@ void	get_map(t_data *data, char **argv)
 	char	*s;
 
 	fd = open(argv[1], O_RDONLY);
-	data->map = ft_calloc(sizeof(char *), ((data->end - data->start) + 3));
+	data->map = ft_calloc(sizeof(char *), ((data->end - data->start) + 4));
 	s = get_next_line(fd);
 	i = 0;
 	while (i != data->start - 1)
@@ -120,7 +121,7 @@ void	get_map(t_data *data, char **argv)
 	}
 	data->map[i] = line(data->len_max);
 	i++;
-	data->map[i] = '\0';
+	data->map[i] = NULL;
 }
 int	good_letters(t_data *data, char **tab)
 {
@@ -151,7 +152,7 @@ int	is_valid_map(t_data *data)
 	
 	i = 1;
 	if (good_letters(data, data->map))
-		return (1);
+		return (print_error("map"));
 	while (data->map[i])
 	{
 		j = 0;
@@ -161,6 +162,8 @@ int	is_valid_map(t_data *data)
 			|| (data->map[i][j] == '0' && data->map[i - 1][j] == ' ')
 			|| (data->map[i][j] == '0' && data->map[i][j + 1] == ' ')
 			|| (data->map[i][j] == '0' && data->map[i][j - 1] == ' '))
+				return (1);
+			else if (check_player(data->map, i, j))
 				return (1);
 			j++;
 		}

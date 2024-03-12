@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:06:50 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/06 18:42:52 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/11 19:16:56 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,14 @@ int	error_file(t_data *data, char **argv)
 	if (get_positions_start(data, argv) == 1 || get_textures(data, argv) == 1
 		|| get_colors(data, argv) == 1)
 	{
-		printf("Error.\nPlease, check the file.\n");
+		printf("CARLA J AI GRAVE RAISON\n");
 		return (1);
 	}
 	data->textures = tab_in_order(data);
 	data->colors = color_in_order(data);
 	clean_tab(data);
 	if (split_colors(data) == 1)
-	{
-		printf("Error.\nPlease, check the file.\n");
-		return (1);
-	}
+		return (print_error("color"));
 	return (0);
 }
 
