@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:20:44 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/12 16:05:34 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/13 14:32:28 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,14 @@ void	init_data(t_data *data)
 	data->end = 0;
 	data->len_max = 0;
 	data->tall_map = 0;
-	data->pos_x = 0;
-	data->pos_y = 0;
+	data->posi_x = 0;
+	data->posi_y = 0;
 	data->player = 0;
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	t_p		p;
 	(void)data;
 	if (good_arg(argc, argv) == 1)
 		exit(EXIT_FAILURE);

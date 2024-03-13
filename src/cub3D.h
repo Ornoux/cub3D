@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:27:59 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/12 20:29:01 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:26:32 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # define WIDTH 1200
 # define HEIGHT 700
-# define MOVEMENT 0.4
+# define MOVEMENT 1.02
 
 typedef struct s_data
 {
@@ -66,17 +66,36 @@ typedef struct s_data
 
 typedef	struct	s_ray
 {
+	// Positions des rayons
+	double	pos_x;
+	double	pos_y;
+	
 	// Direction des rayons
 	double	dir_x;
 	double	dir_y;
 
-	// Direction du player
-	double	player_x;
-	double	player_y;
-
 	// DeltaX et DeltaY
 	double	delta_x;
 	double	delta_y;
+	
+	// Carre de la map
+	int		mapx;
+	int		mapy;
+
+	// Longeur entre le prochain step
+	double	side_x;
+	double	side_y;
+
+	// Step pour le DDA sur les bordures
+	double	step_x;
+	double	step_y;
+
+	// 1 || 0 pour savoir durant le DDA si un mur est touche par le ray
+	int		hit;
+	
+	// Side : NS || EW mur hitted
+	int		side;
+	double	camera_x;
 }				t_ray;
 
 typedef	struct	s_p
@@ -86,13 +105,23 @@ typedef	struct	s_p
 	double	pos_y;
 
 	// Direction du player
-	double	player_x;
-	double	player_y;
+	double	dirp_x;
+	double	dirp_y;
 
 	// Cam
-	double	camera_x;
-	double	camera_y;
+	double	plane_x;
+	double	plane_y;
 }				t_p;
+
+typedef struct s_draw
+{
+	double	perpendicular;
+	int		lineheight;
+	int		startdraw;
+	int		end_draw;
+	
+}	t_draw;
+
 
 
 // UTILS PART
@@ -126,6 +155,9 @@ int		key_release(int key, t_data *data);
 int		run_data(t_data *data);
 void	mlx(t_data *data);
 void	put_img(t_data *data, void	*img, int x, int y);
+void	create_img(t_data *data);
+void	create_img2(t_data *data);
+int		create_trgb(int t, int r, int g, int b);
 
 
 

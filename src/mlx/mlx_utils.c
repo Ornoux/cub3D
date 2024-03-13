@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:59:32 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/11 19:09:43 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:02:34 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,8 @@ int	run_data(t_data *data)
 		i++;
 	}*/
 	return (0);
+}
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
 }

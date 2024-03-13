@@ -6,7 +6,7 @@
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 14:20:24 by npatron           #+#    #+#              #
-#    Updated: 2024/03/12 14:39:54 by npatron          ###   ########.fr        #
+#    Updated: 2024/03/13 18:06:36 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,9 @@ SOURCES = src/main.c \
       src/utils/utils_5.c \
       src/mlx/init_mlx.c \
       src/mlx/mlx_utils.c \
+      src/mlx/create_img.c \
+      src/mini_map/mini_map.c \
+      src/mini_map/utils_minimap.c \
 
 NAME     = cub3d
 OBJECTS  = ${SOURCES:.c=.o}
