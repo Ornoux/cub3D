@@ -6,106 +6,135 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:03:49 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/13 19:36:36 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/15 16:31:08 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	dda(t_ray *ray, t_p *p, t_data *data)
+void dda(t_data *data) //OK
 {
-	while (ray->hit == 0)
+	while (data->ray.hit == 0)
 	{
-		if (ray->side_x <  ray->side_y)
+		if (data->ray.side_x <  data->ray.side_y)
 		{
-			ray->side_x = ray->side_x + ray->delta_x;
-			ray->mapx = ray->mapx + ray->step_x;
-			ray->side = 0;
+			data->ray.side_x += data->ray.delta_x;
+			data->ray.mapx += data->ray.step_x;
+			data->ray.side = 0;
 		}
 		else
 		{
-			ray->side_y = ray->side_y + ray->delta_y;
-			ray->mapy = ray->mapy + ray->step_y;
-			ray->side = 1;
+			data->ray.side_y += data->ray.delta_y;
+			data->ray.mapy += data->ray.step_y;
+			data->ray.side = 1;
 		}
-		if (data->map[ray->mapx][ray->mapy] == 1)
-			ray->hit == 1;
-	}
+		if (data->map[data->ray.mapx][data->ray.mapy] == '1')
+			data->ray.hit = 1;
+		}
 }
-void	step(t_ray *ray)
+
+void	init_step(t_data *data) //OK
 {
-	ray->hit = 0;
-	if (ray->dir_x < 0)
+	if (data->ray.dir_x < 0)
 	{
-		ray->step_x = -1;
-		ray->side_x = (ray->pos_x - ray->mapx) * ray->delta_x;
+		data->ray.step_x = -1;
+		data->ray.side_x = (data->p.pos_x - data->ray.mapx) * data->ray.delta_x;
 	}
 	else
 	{
-		ray->step_x = 1;
-		ray->side_x = (ray->mapx + 1.0 - ray->pos_x) * ray->delta_x;
+		data->ray.step_x = 1;
+		data->ray.side_x = (data->ray.mapx + 1.0 - data->p.pos_x) * data->ray.delta_x;
 	}
-	if (ray->dir_y < 0)
+	if (data->ray.dir_y < 0)
 	{
-		ray->step_y = -1;
-		ray->side_y = (ray->pos_y - ray->mapy) * ray->delta_y;
+		data->ray.step_y = -1;
+		data->ray.side_y = (data->p.pos_y - data->ray.mapy) * data->ray.delta_y;
 	}
 	else
 	{
-		ray->step_y = 1;
-		ray->side_y = (ray->mapy + 1.0 - ray->pos_y) * ray->delta_y;
+		data->ray.step_y = 1;
+		data->ray.side_y = (data->ray.mapy + 1.0 - data->p.pos_y) * data->ray.delta_y;
 	}
 }
 
-void	values_rays(t_ray *ray, t_p *p, int i)
+void	init_values_rays(t_data *data, int i)
 {
-	ray->camera_x = (2 * i) / ((double)WIDTH - 1);
-	ray->dir_x = p->dirp_x + (p->plane_x * ray->camera_x);
-	ray->dir_y = p->dirp_y + (p->plane_y * ray->camera_x);
-	ray->mapx = (int)p->pos_x;
-	ray->mapy = (int)p->pos_x;
-	ray->delta_x = sqrt(1 + (pow(ray->dir_y, 2) / pow(ray->dir_x, 2)));
-	ray->delta_y = sqrt(1 + (pow(ray->dir_x, 2) / pow(ray->dir_y, 2)));
-	
+	ft_bzero(&data->ray, sizeof(t_ray));
+	data->ray.camera_x = (2 * i) / (double)WIDTH - 1;
+	data->ray.mapx = (int)data->p.pos_x;
+	data->ray.mapy = (int)data->p.pos_y;
+	data->ray.dir_x = data->p.dirp_x + (data->p.plane_x * data->ray.camera_x);
+	data->ray.dir_y = data->p.dirp_y + (data->p.plane_y * data->ray.camera_x);
+	data->ray.delta_x = fabs(1 / data->ray.dir_x);
+	data->ray.delta_y = fabs(1 / data->ray.dir_y);
 }
-void	values_wall(t_ray *ray, t_draw *d)
+void	values_wall(t_data *data)
 {
-	if (ray->side == 0)
-		d->perpendicular = (ray->side_x - ray->delta_x);
+	if (data->ray.side == 0)
+		data->ray.perpendicular = (data->ray.side_x - data->ray.delta_x); //+ (1 - data->ray.step_x / 2) / data->ray.dir_x;
 	else
-		d->perpendicular = (ray->side_y - ray->delta_y);
-	d->lineheight = (int)(HEIGHT / d->perpendicular);
-	d->startdraw = (-(d->lineheight) / 2) + (HEIGHT / 2);
-	if (d->startdraw < 0)
-		d->startdraw = 0;
-	d->end_draw = ((d->lineheight) / 2) + (HEIGHT / 2);
-	if (d->end_draw >= HEIGHT)
-		d->end_draw = HEIGHT - 1;
+		data->ray.perpendicular = (data->ray.side_y - data->ray.delta_y); //+ (1 - data->ray.step_y / 2) / data->ray.dir_y;
+	data->ray.lineheight = (HEIGHT / data->ray.perpendicular);
+	data->ray.start_draw = (-(data->ray.lineheight) / 2) + (HEIGHT / 2);
+	if (data->ray.start_draw < 0)
+		data->ray.start_draw = 0;
+	data->ray.end_draw = ((data->ray.lineheight) / 2) + (HEIGHT / 2);
+	if (data->ray.end_draw >= HEIGHT)
+		data->ray.end_draw = HEIGHT - 1;
 }
 
-void	build_column(t_ray *ray, t_draw *d)
+void	set_sky(t_data *data, int x)
 {
 	int	y;
-	
 
+	y = data->ray.end_draw;
+	while (y <= HEIGHT)
+	{
+		mlx_pixel_put(data->mlx_ptr, data->mlx_win, x, y, create_trgb(0, data->c_sky[0], data->c_sky[1], data->c_sky[2]));
+		y++;
+	}
+}
 
-	
-	
+void	set_floor(t_data *data, int x)
+{
+	int	y;
+
+	y = 0;
+	while (y <= data->ray.start_draw)
+	{
+		mlx_pixel_put(data->mlx_ptr, data->mlx_win, x, y, create_trgb(0, data->c_floor[0], data->c_floor[1], data->c_floor[2]));
+		y++;
+	}
+}
+
+void	build_column(t_data	*data, int x)
+{
+	int	y;
+
+	set_floor(data, x);
+	y = data->ray.start_draw - 1;
+	while (y <= data->ray.end_draw)
+	{
+		mlx_pixel_put(data->mlx_ptr, data->mlx_win, x, y, 0xAA0000);
+		y++;
+	}
+	set_sky(data, x);
 }
 
 
-void	raycasting(t_data *data, t_p *p, t_ray *ray, t_draw *d)
+void	raycasting(t_data *data)
 {
 	int	i;
-
+	
 	i = 0;
 	while (i <= WIDTH)
 	{
-		values_rays(ray, p, i);
-		step(ray);
-		dda(ray, p, data);
-		values_wall(ray, d);
+		init_values_rays(data, i);
+		init_step(data);
+		dda(data);
+		values_wall(data);
+		build_column(data, i);
 		i++;
 	}
-
+	return ;
 }

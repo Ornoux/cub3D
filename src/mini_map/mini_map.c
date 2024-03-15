@@ -6,13 +6,13 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:27:09 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/13 17:51:43 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/14 10:06:23 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-
+/*
 int	map_is_refreshable(char	**tab)
 {
 	int	i;
@@ -40,3 +40,4 @@ char	**create_tab(t_data *data)
 
 	
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:19:58 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/13 17:05:33 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/14 15:33:06 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ void	create_img2(t_data *data)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, ptr_img, 0, 0);
+	//mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, ptr_img, 0, 0);
 }

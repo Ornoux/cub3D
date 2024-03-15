@@ -6,12 +6,11 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:53:19 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/13 18:05:54 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/14 10:06:40 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
-
+/*
 int	valid_lentab(char **tab)
 {
 	int	i;
@@ -46,4 +45,4 @@ int	valid_line(char *s)
 	if (len > 10)
 		return (1);
 	return (0);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:16:03 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/12 16:10:26 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/15 13:58:52 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	is_good_char(t_data *data, char c, int x, int y)
 		data->player++;
 		data->posi_x = x;
 		data->posi_y = y;
+		data->pl = c;
 	}
 	if (c == ' ' || c == 'N' || c == 'S'
 		|| c == 'W' || c == 'E' || c == '1'
@@ -50,14 +51,16 @@ int	error_into_file(t_data *data, char **argv)
 
 int	print_error(char *s)
 {
-	if (ft_strcmp(s, "color") == 0)
+	if (ft_strcmp(s, "file") == 0)
+		printf("Error.\nPlease, check the file\n");
+	else if (ft_strcmp(s, "color") == 0)
 		printf("Error.\nPlease, check the colors\n");
 	else if ((ft_strcmp(s, "char") == 0))
-		printf("Error\n. Bad character into the file.\n");
+		printf("Error.\nBad character into the file.\n");
 	else if ((ft_strcmp(s, "range") == 0))
-		printf("Error\n. Bad range into the file.\n");
+		printf("Error.\nBad range into the file.\n");
 	else if ((ft_strcmp(s, "map") == 0))
-		printf("Error\n. Error into the map.\n");
+		printf("Error.\nError into the map.\n");
 	return (1);
 }
 
@@ -100,5 +103,17 @@ int	check_player(char **map, int i, int j)
 			|| (is_player(map[i][j]) && char_valid(map[i][j - 1])))
 		return (1);
 	return (0);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)s)[i] = 0;
+		i++;
+	}
 }
 

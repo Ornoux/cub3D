@@ -6,7 +6,7 @@
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 14:20:24 by npatron           #+#    #+#              #
-#    Updated: 2024/03/13 18:06:36 by npatron          ###   ########.fr        #
+#    Updated: 2024/03/14 10:52:58 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SOURCES = src/main.c \
       src/mlx/create_img.c \
       src/mini_map/mini_map.c \
       src/mini_map/utils_minimap.c \
+      src/raycasting/init_raycasting.c \
+      src/raycasting/raycasting.c \
 
 NAME     = cub3d
 OBJECTS  = ${SOURCES:.c=.o}
@@ -39,8 +41,8 @@ OBJECTS  = ${SOURCES:.c=.o}
 MLX_PATH = ./minilibx
 MLX      = $(MLX_PATH)/libmlx.a
 
-CFLAGS     = -Wall -Wextra -Werror #-g -fsanitize=address
-LDFLAGS    = -L ${MLX_PATH} -lm -lbsd -lX11 -lXext -lmlx
+CFLAGS     = -Wall -Wextra -Werror -g
+LDFLAGS    = -L ${MLX_PATH} -lm -lbsd -lX11 -lXext -lmlx 
 
 
 .c.o:

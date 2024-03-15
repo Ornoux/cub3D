@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:20:44 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/13 14:32:28 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/15 17:00:21 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@ void	init_data(t_data *data)
 	data->posi_x = 0;
 	data->posi_y = 0;
 	data->player = 0;
+	data->pl = 0;
 }
+
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
+
 	(void)data;
 	if (good_arg(argc, argv) == 1)
 		exit(EXIT_FAILURE);
@@ -50,6 +53,10 @@ int	main(int argc, char **argv)
 		print_error("map");
 		return (0);
 	}
+	data.tmp_x = (int)data.p.pos_x;
+	data.tmp_y = (int)data.p.pos_y;
+	ft_bzero(&data.p, sizeof(t_p));
+	init_raycast(&data);
 	mlx(&data);
 	// free_data(&data);
 	// free(&data);

@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:27:59 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/13 17:26:32 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/15 16:53:45 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,47 +29,12 @@
 # include "../minilibx/mlx_int.h"
 
 # define WIDTH 1200
-# define HEIGHT 700
-# define MOVEMENT 1.02
-
-typedef struct s_data
-{
-	int		*key;
-	int		no;
-	int		so;
-	int		we;
-	int		ea;
-	int		sky;
-	int		bg;
-	int		start;
-	int		start_2;
-	int		end;
-	char	**map;
-	char	**textures;
-	char	**colors;
-	int		len_max;
-	int		tall_map;
-	int		*c_floor;
-	int		*c_sky;
-	int		player;
-	int		posi_x;
-	int		posi_y;
-	void	*mlx_ptr;
-	void	*mlx_win;
-	void	*mini_wall;
-	void	*mini_floor;
-	void	*mini_player;
-	void	*img;
-
-}			t_data;
-
+# define HEIGHT 800
+# define MOVEMENT 0.3
+# define ROTATION 0.3
 
 typedef	struct	s_ray
-{
-	// Positions des rayons
-	double	pos_x;
-	double	pos_y;
-	
+{	
 	// Direction des rayons
 	double	dir_x;
 	double	dir_y;
@@ -93,9 +58,18 @@ typedef	struct	s_ray
 	// 1 || 0 pour savoir durant le DDA si un mur est touche par le ray
 	int		hit;
 	
-	// Side : NS || EW mur hitted
+	// Side : NS || EW mur hit
 	int		side;
 	double	camera_x;
+	
+
+//corrected dist
+	double	perpendicular;
+	double	lineheight;
+
+	int		start_draw;
+	int		end_draw;
+	
 }				t_ray;
 
 typedef	struct	s_p
@@ -111,16 +85,53 @@ typedef	struct	s_p
 	// Cam
 	double	plane_x;
 	double	plane_y;
+
+	double	oldDir;
+	double	oldPlane;
 }				t_p;
 
-typedef struct s_draw
+
+typedef struct s_data
 {
-	double	perpendicular;
-	int		lineheight;
-	int		startdraw;
-	int		end_draw;
+	char	pl;
+	int		*key;
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
+	int		sky;
+	int		bg;
+	int		start;
+	int		start_2;
+	int		end;
+	char	**map;
+	char	**textures;
+	char	**colors;
+	int		len_max;
+	int		tall_map;
+	int		*c_floor;
+	int		*c_sky;
+	int		player;
+	int		posi_x;
+	int		posi_y;
+	int		tmp_x;
+	int		tmp_y;
+
+
+	void	*mlx_ptr;
+	void	*mlx_win;
+	t_img	*img;
+
+	t_img	*n_texture;
+	t_img	*s_texture;
+	t_img	*e_texture;
+	t_img	*w_texture;
+
+	t_ray	ray;
+	t_p		p;
+
 	
-}	t_draw;
+}			t_data;
 
 
 
@@ -147,17 +158,19 @@ char	*line(int n);
 int		is_good_char(t_data *data, char c, int i, int j);
 int		error_into_file(t_data *data, char **argv);
 int		check_player(char **map, int i, int j);
+void	init_raycast(t_data *data);
 
 // MLX PART
 int		ft_exit(t_data *data);
 int		key_press(int key, t_data *data);
 int		key_release(int key, t_data *data);
-int		run_data(t_data *data);
+int		run_data(t_data *datad);
 void	mlx(t_data *data);
 void	put_img(t_data *data, void	*img, int x, int y);
 void	create_img(t_data *data);
 void	create_img2(t_data *data);
 int		create_trgb(int t, int r, int g, int b);
+void	raycasting(t_data *data);
 
 
 
@@ -185,11 +198,10 @@ char	**color_in_order(t_data *data);
 void	len_max_map(t_data *data, char **argv);
 int		good_letters(t_data *data, char **tab);
 int		is_valid_map(t_data *data);
-int		texture_is_xpm(char *str);
 void	init_mlx(t_data *data);
 int		print_error(char *s);
 int		ft_strcmp(const char *s1, const char *s2);
 int		check_player(char **map, int i, int j);
-
+void	ft_bzero(void *s, size_t n);
 
 #endif
