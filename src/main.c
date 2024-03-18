@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:20:44 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/15 17:00:21 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:07:10 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	(void)data;
 	if (good_arg(argc, argv) == 1)
 		exit(EXIT_FAILURE);
 	init_data(&data);
@@ -55,7 +54,7 @@ int	main(int argc, char **argv)
 	}
 	data.tmp_x = (int)data.p.pos_x;
 	data.tmp_y = (int)data.p.pos_y;
-	ft_bzero(&data.p, sizeof(t_p));
+	//ft_bzero(&data.p, sizeof(t_p));
 	init_raycast(&data);
 	mlx(&data);
 	// free_data(&data);

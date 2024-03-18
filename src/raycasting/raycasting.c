@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:03:49 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/15 16:31:08 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/18 15:59:55 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	init_values_rays(t_data *data, int i)
 void	values_wall(t_data *data)
 {
 	if (data->ray.side == 0)
-		data->ray.perpendicular = (data->ray.side_x - data->ray.delta_x); //+ (1 - data->ray.step_x / 2) / data->ray.dir_x;
+		data->ray.perpendicular = (data->ray.side_x - data->ray.delta_x);
 	else
-		data->ray.perpendicular = (data->ray.side_y - data->ray.delta_y); //+ (1 - data->ray.step_y / 2) / data->ray.dir_y;
+		data->ray.perpendicular = (data->ray.side_y - data->ray.delta_y);
 	data->ray.lineheight = (HEIGHT / data->ray.perpendicular);
 	data->ray.start_draw = (-(data->ray.lineheight) / 2) + (HEIGHT / 2);
 	if (data->ray.start_draw < 0)
@@ -83,26 +83,26 @@ void	values_wall(t_data *data)
 		data->ray.end_draw = HEIGHT - 1;
 }
 
-void	set_sky(t_data *data, int x)
-{
-	int	y;
-
-	y = data->ray.end_draw;
-	while (y <= HEIGHT)
-	{
-		mlx_pixel_put(data->mlx_ptr, data->mlx_win, x, y, create_trgb(0, data->c_sky[0], data->c_sky[1], data->c_sky[2]));
-		y++;
-	}
-}
-
 void	set_floor(t_data *data, int x)
 {
 	int	y;
 
-	y = 0;
-	while (y <= data->ray.start_draw)
+	y = data->ray.end_draw;
+	while (y < HEIGHT)
 	{
-		mlx_pixel_put(data->mlx_ptr, data->mlx_win, x, y, create_trgb(0, data->c_floor[0], data->c_floor[1], data->c_floor[2]));
+		my_mlx_pixel_put(data, x, y, create_trgb(0, data->c_floor[0], data->c_floor[1], data->c_floor[2]));
+		y++;
+	}
+}
+
+void	set_sky(t_data *data, int x)
+{
+	int	y;
+
+	y = 0;
+	while (y < data->ray.start_draw)
+	{
+		my_mlx_pixel_put(data, x, y, create_trgb(0, data->c_sky[0], data->c_sky[1], data->c_sky[2]));
 		y++;
 	}
 }
@@ -112,10 +112,10 @@ void	build_column(t_data	*data, int x)
 	int	y;
 
 	set_floor(data, x);
-	y = data->ray.start_draw - 1;
+	y = data->ray.start_draw;
 	while (y <= data->ray.end_draw)
 	{
-		mlx_pixel_put(data->mlx_ptr, data->mlx_win, x, y, 0xAA0000);
+		my_mlx_pixel_put(data, x, y, 0xFF0000);
 		y++;
 	}
 	set_sky(data, x);
@@ -127,7 +127,7 @@ void	raycasting(t_data *data)
 	int	i;
 	
 	i = 0;
-	while (i <= WIDTH)
+	while (i < WIDTH)
 	{
 		init_values_rays(data, i);
 		init_step(data);

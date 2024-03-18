@@ -6,7 +6,7 @@
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 14:20:24 by npatron           #+#    #+#              #
-#    Updated: 2024/03/14 10:52:58 by npatron          ###   ########.fr        #
+#    Updated: 2024/03/18 16:23:15 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ OBJECTS  = ${SOURCES:.c=.o}
 MLX_PATH = ./minilibx
 MLX      = $(MLX_PATH)/libmlx.a
 
-CFLAGS     = -Wall -Wextra -Werror -g
+CFLAGS     = -Wall -Wextra -Werror -g -O3
 LDFLAGS    = -L ${MLX_PATH} -lm -lbsd -lX11 -lXext -lmlx 
 
 

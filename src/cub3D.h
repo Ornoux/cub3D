@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:27:59 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/15 16:53:45 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:15:53 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,19 @@
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
 
-# define WIDTH 1200
-# define HEIGHT 800
-# define MOVEMENT 0.3
+# define WIDTH 1020
+# define HEIGHT 700
+# define MOVEMENT 0.2
 # define ROTATION 0.3
+
+typedef struct  s_image
+{
+  void        *img;
+  char        *addr;
+  int         bpp;
+  int         size_line;
+  int         endian;
+}               t_image;
 
 typedef	struct	s_ray
 {	
@@ -62,8 +71,7 @@ typedef	struct	s_ray
 	int		side;
 	double	camera_x;
 	
-
-//corrected dist
+	//corrected dist
 	double	perpendicular;
 	double	lineheight;
 
@@ -82,7 +90,7 @@ typedef	struct	s_p
 	double	dirp_x;
 	double	dirp_y;
 
-	// Cam
+	// Cam/Rota
 	double	plane_x;
 	double	plane_y;
 
@@ -120,12 +128,12 @@ typedef struct s_data
 
 	void	*mlx_ptr;
 	void	*mlx_win;
-	t_img	*img;
+	t_image	*img;
 
-	t_img	*n_texture;
-	t_img	*s_texture;
-	t_img	*e_texture;
-	t_img	*w_texture;
+	t_image	*n_texture;
+	t_image	*s_texture;
+	t_image	*e_texture;
+	t_image	*w_texture;
 
 	t_ray	ray;
 	t_p		p;
@@ -165,12 +173,14 @@ int		ft_exit(t_data *data);
 int		key_press(int key, t_data *data);
 int		key_release(int key, t_data *data);
 int		run_data(t_data *datad);
-void	mlx(t_data *data);
+int		mlx(t_data *data);
 void	put_img(t_data *data, void	*img, int x, int y);
 void	create_img(t_data *data);
 void	create_img2(t_data *data);
 int		create_trgb(int t, int r, int g, int b);
 void	raycasting(t_data *data);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		init_my_texturess(t_data *data);
 
 
 

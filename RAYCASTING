@@ -1,1 +1,33 @@
 https://www.youtube.com/watch?v=g8p7nAbDz6Y
+https://github.com/keuhdall/images_example/blob/master/README.md
+
+Fonctions MLX : 
+
+typedef struct  s_img {
+  void        *img;
+  char        *addr;
+  int         bpp;
+  int         size_line;
+  int         endian;
+}               t_img;
+
+
+addr = mlx_get_data_addr(img_ptr, &bpp, &size_line, &endian)
+
+bpp = 32 || Un pixel est codé sur 4 chars, composé chacun de 8 bits, on a donc 32.
+size_line = WIDTH x 4 || La largeur d'une ligne de pixels est WIDTH, donc : WIDTH * 4.
+endian = 0 ou 1, pas trop compris.
+
+Pour afficher l'image : mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
+
+
+void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+  char    *dst;
+
+  dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+  *(unsigned int*)dst = color;
+}
+
+
+- char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian);

@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:16:03 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/15 13:58:52 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:17:09 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	print_error(char *s)
 		printf("Error.\nBad range into the file.\n");
 	else if ((ft_strcmp(s, "map") == 0))
 		printf("Error.\nError into the map.\n");
+	else if ((ft_strcmp(s, "textures") == 0))
+		printf("Error.\nCheck your textures.\n");
 	return (1);
 }
 
