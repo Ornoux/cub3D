@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:27:59 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/18 16:15:53 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/19 20:06:12 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
 
-# define WIDTH 1020
-# define HEIGHT 700
+# define WIDTH 1920
+# define HEIGHT 1080
 # define MOVEMENT 0.2
-# define ROTATION 0.3
+# define ROTATION 0.0000002
+# define PI 3,1415926
 
 typedef struct  s_image
 {
@@ -40,6 +41,8 @@ typedef struct  s_image
   int         bpp;
   int         size_line;
   int         endian;
+  int		width;
+  int		height;
 }               t_image;
 
 typedef	struct	s_ray
@@ -69,6 +72,7 @@ typedef	struct	s_ray
 	
 	// Side : NS || EW mur hit
 	int		side;
+	double	color_side;
 	double	camera_x;
 	
 	//corrected dist
@@ -77,6 +81,8 @@ typedef	struct	s_ray
 
 	int		start_draw;
 	int		end_draw;
+
+	double	wall_x;
 	
 }				t_ray;
 
@@ -97,7 +103,6 @@ typedef	struct	s_p
 	double	oldDir;
 	double	oldPlane;
 }				t_p;
-
 
 typedef struct s_data
 {
@@ -124,6 +129,7 @@ typedef struct s_data
 	int		posi_y;
 	int		tmp_x;
 	int		tmp_y;
+	double	rota;
 
 
 	void	*mlx_ptr;
@@ -178,9 +184,10 @@ void	put_img(t_data *data, void	*img, int x, int y);
 void	create_img(t_data *data);
 void	create_img2(t_data *data);
 int		create_trgb(int t, int r, int g, int b);
-void	raycasting(t_data *data);
+int		raycasting(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		init_my_texturess(t_data *data);
+void	mini_map(t_data *data);
 
 
 

@@ -6,7 +6,7 @@
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 14:20:24 by npatron           #+#    #+#              #
-#    Updated: 2024/03/18 16:23:15 by npatron          ###   ########.fr        #
+#    Updated: 2024/03/19 10:42:51 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SOURCES = src/main.c \
       src/mlx/create_img.c \
       src/mini_map/mini_map.c \
       src/mini_map/utils_minimap.c \
-      src/raycasting/init_raycasting.c \
+      src/raycasting/init_player_position.c \
       src/raycasting/raycasting.c \
 
 NAME     = cub3d

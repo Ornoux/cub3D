@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:59:32 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/18 15:53:14 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/19 13:51:21 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,20 @@ int	key_press(int key, t_data *data)
 	if (key == 65363) // FL DROITE
 	{
 		data->p.oldDir = data->p.dirp_x;
-		data->p.dirp_x = data->p.dirp_x * cos(-ROTATION) - data->p.dirp_y * sin(-ROTATION);
-		data->p.dirp_y = data->p.oldDir * sin(-ROTATION) + data->p.dirp_y * cos(-ROTATION);
+		data->p.dirp_x = data->p.dirp_x * cos(-ROTATION * data->rota) - data->p.dirp_y * sin(-ROTATION * data->rota);
+		data->p.dirp_y = data->p.oldDir * sin(-ROTATION * data->rota) + data->p.dirp_y * cos(-ROTATION * data->rota);
 		data->p.oldPlane = data->p.plane_x;
-		data->p.plane_x = data->p.plane_x * cos(-ROTATION) - data->p.plane_y * sin(-ROTATION);
-		data->p.plane_y = data->p.oldPlane * sin(-ROTATION) + data->p.plane_y * cos(-ROTATION);
+		data->p.plane_x = data->p.plane_x * cos(-ROTATION * data->rota) - data->p.plane_y * sin(-ROTATION * data->rota);
+		data->p.plane_y = data->p.oldPlane * sin(-ROTATION * data->rota) + data->p.plane_y * cos(-ROTATION * data->rota);
 	}
 	if (key == 65361) // FL GAUCHE
 	{
 		data->p.oldDir = data->p.dirp_x;
-		data->p.dirp_x = data->p.dirp_x * cos(ROTATION) - data->p.dirp_y * sin(ROTATION);
-		data->p.dirp_y = data->p.oldDir * sin(ROTATION) + data->p.dirp_y * cos(ROTATION);
+		data->p.dirp_x = data->p.dirp_x * cos(ROTATION * data->rota) - data->p.dirp_y * sin(ROTATION * data->rota);
+		data->p.dirp_y = data->p.oldDir * sin(ROTATION * data->rota) + data->p.dirp_y * cos(ROTATION * data->rota);
 		data->p.oldPlane = data->p.plane_x;
-		data->p.plane_x = data->p.plane_x * cos(ROTATION) - data->p.plane_y * sin(ROTATION);
-		data->p.plane_y = data->p.oldPlane * sin(ROTATION) + data->p.plane_y * cos(ROTATION);
+		data->p.plane_x = data->p.plane_x * cos(ROTATION * data->rota) - data->p.plane_y * sin(ROTATION * data->rota);
+		data->p.plane_y = data->p.oldPlane * sin(ROTATION * data->rota) + data->p.plane_y * cos(ROTATION * data->rota);
 	}
 	return (0);
 }
@@ -106,6 +106,7 @@ int	key_release(int key, t_data *data)
 int	run_data(t_data *data)
 {
 	raycasting(data);
+	mini_map(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img->img, 0, 0);
 	return (0);
 }

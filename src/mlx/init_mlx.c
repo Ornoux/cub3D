@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:20:35 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/18 16:20:15 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/19 19:42:31 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	init_mlx(t_data *data)
 void	init(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
+	init_my_texturess(data);
 	data->img->img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp, &data->img->size_line, &data->img->endian);
 	data->key = ft_calloc(6, sizeof(int));
@@ -51,11 +52,11 @@ void	init(t_data *data)
 
 int	mlx(t_data *data)
 {
-	data->img = malloc(sizeof(t_image));
-	data->n_texture = malloc(sizeof(t_image));
-	data->s_texture = malloc(sizeof(t_image));
-	data->w_texture = malloc(sizeof(t_image));
-	data->e_texture = malloc(sizeof(t_image));
+	data->img = ft_calloc(1, sizeof(t_image));
+	data->n_texture = ft_calloc(1, sizeof(t_image));
+	data->s_texture = ft_calloc(1, sizeof(t_image));
+	data->w_texture = ft_calloc(1, sizeof(t_image));
+	data->e_texture = ft_calloc(1, sizeof(t_image));
 	init(data);
 	if (init_my_texturess(data) == 1)
 		return (print_error("textures"));

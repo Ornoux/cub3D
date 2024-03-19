@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:20:44 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/18 14:07:10 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/19 11:38:51 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_data(t_data *data)
 	data->posi_y = 0;
 	data->player = 0;
 	data->pl = 0;
+	data->rota = 0;
 }
 
 

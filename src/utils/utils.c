@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 20:19:30 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/09 16:43:41 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/19 19:17:13 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	print_tab(char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		printf("%s\n", tab[i]);
+		printf(" %d | %s\n", i, tab[i]);
 		i++;
 	}
 }

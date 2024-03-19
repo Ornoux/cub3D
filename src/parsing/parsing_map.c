@@ -6,7 +6,21 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:37:38 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/12 14:02:41 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/19 09:43:48 by npatron          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../cub3D.h"
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/05 18:37:38 by npatron           #+#    #+#             */
+/*   Updated: 2024/03/19 01:28:28 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +125,7 @@ void	get_map(t_data *data, char **argv)
 		i++;
 	}
 	i = 1;
-	data->map[0] = line(data->len_max);
+	data->map[0] = line(data->len_max + 2);
 	while (data->start <= data->end)
 	{
 		data->map[i] = copy_string(s, data->len_max);
@@ -119,7 +133,7 @@ void	get_map(t_data *data, char **argv)
 		i++;
 		data->start++;
 	}
-	data->map[i] = line(data->len_max);
+	data->map[i] = line(data->len_max + 2);
 	i++;
 	data->map[i] = NULL;
 }
@@ -150,9 +164,9 @@ int	is_valid_map(t_data *data)
 	int	i;
 	int	j;
 	
-	i = 1;
+	i = 0;
 	if (good_letters(data, data->map))
-		return (print_error("map"));
+		return (1);
 	while (data->map[i])
 	{
 		j = 0;

@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug cub3d",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/cub3d",
+            "args": ["texte.cub"],
+            "cwd": "${workspaceFolder}",
+            "environment": [ 
+				{ "name": "LOGNAME", "value": "ggualerz" },
+			],
+            "stopAtEntry": false,
+            "preLaunchTask": "Build and Clean",
+			"externalConsole": false,
+
+        }
+    ]
+}

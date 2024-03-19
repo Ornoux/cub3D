@@ -6,11 +6,30 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:08:32 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/11 12:33:39 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/19 19:35:35 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+void	erase_greg_de_mavie(char **tab)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			if (tab[i][j] == '\n')
+				tab[i][j] = '\0';
+			j++;
+		}
+		i++;
+	}
+}
 
 int	file_in_order(char *s)
 {
@@ -39,6 +58,7 @@ char	**tab_in_order(t_data *data)
 		i++;
 	}
 	tab[4] = NULL;
+	erase_greg_de_mavie(tab);
 	return (tab);
 }
 
