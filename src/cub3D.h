@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:27:59 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/19 20:06:12 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/22 19:10:46 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@
 # define HEIGHT 1080
 # define MOVEMENT 0.2
 # define ROTATION 0.0000002
-# define PI 3,1415926
+# define PI 3.1415926
 
-typedef struct  s_image
+typedef struct s_image
 {
-  void        *img;
-  char        *addr;
-  int         bpp;
-  int         size_line;
-  int         endian;
-  int		width;
-  int		height;
-}               t_image;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		width;
+	int		height;
+}			t_image;
 
-typedef	struct	s_ray
-{	
+typedef struct s_ray
+{
 	// Direction des rayons
 	double	dir_x;
 	double	dir_y;
@@ -54,7 +54,7 @@ typedef	struct	s_ray
 	// DeltaX et DeltaY
 	double	delta_x;
 	double	delta_y;
-	
+
 	// Carre de la map
 	int		mapx;
 	int		mapy;
@@ -69,12 +69,12 @@ typedef	struct	s_ray
 
 	// 1 || 0 pour savoir durant le DDA si un mur est touche par le ray
 	int		hit;
-	
+
 	// Side : NS || EW mur hit
 	int		side;
 	double	color_side;
 	double	camera_x;
-	
+
 	//corrected dist
 	double	perpendicular;
 	double	lineheight;
@@ -83,10 +83,10 @@ typedef	struct	s_ray
 	int		end_draw;
 
 	double	wall_x;
-	
+
 }				t_ray;
 
-typedef	struct	s_p
+typedef struct s_p
 {
 	// Positions du joueur
 	double	pos_x;
@@ -100,8 +100,8 @@ typedef	struct	s_p
 	double	plane_x;
 	double	plane_y;
 
-	double	oldDir;
-	double	oldPlane;
+	double	old_dir;
+	double	old_plane;
 }				t_p;
 
 typedef struct s_data
@@ -130,24 +130,16 @@ typedef struct s_data
 	int		tmp_x;
 	int		tmp_y;
 	double	rota;
-
-
 	void	*mlx_ptr;
 	void	*mlx_win;
 	t_image	*img;
-
-	t_image	*n_texture;
-	t_image	*s_texture;
-	t_image	*e_texture;
-	t_image	*w_texture;
-
+	t_image	*n;
+	t_image	*s;
+	t_image	*e;
+	t_image	*w;
 	t_ray	ray;
 	t_p		p;
-
-	
 }			t_data;
-
-
 
 // UTILS PART
 void	print_tab(char **tab);
@@ -159,7 +151,6 @@ void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_strlen(const char *s);
 int		jump_line(char *str);
 void	free_data(t_data *data);
-int		first_line_map(char *s);
 char	*skip_spaces(char *s);
 char	*erase_spaces(char *s);
 char	**ft_split(char const *s, char c);
@@ -173,7 +164,7 @@ int		is_good_char(t_data *data, char c, int i, int j);
 int		error_into_file(t_data *data, char **argv);
 int		check_player(char **map, int i, int j);
 void	init_raycast(t_data *data);
-
+int		is_player(char c);
 // MLX PART
 int		ft_exit(t_data *data);
 int		key_press(int key, t_data *data);
@@ -181,16 +172,19 @@ int		key_release(int key, t_data *data);
 int		run_data(t_data *datad);
 int		mlx(t_data *data);
 void	put_img(t_data *data, void	*img, int x, int y);
-void	create_img(t_data *data);
-void	create_img2(t_data *data);
 int		create_trgb(int t, int r, int g, int b);
 int		raycasting(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		init_my_texturess(t_data *data);
 void	mini_map(t_data *data);
-
-
-
+void	moves_forward_backward_left(t_data *data, int key);
+void	moves_sides(t_data *data, int key);
+void	build_column_2(t_data *data, int x);
+void	set_floor(t_data *data, int x);
+int		choose_color(t_image *img, int x, int y);
+void	len_max_map(t_data *data, char **argv);
+int		raycasting(t_data *data);
+char	*line(int n);
 // PARSING PART
 int		good_arg(int argc, char **argv);
 int		get_textures(t_data *data, char **argv);
@@ -200,11 +194,8 @@ int		condition_color(t_data *data);
 int		error_file(t_data *data, char **argv);
 void	clean_tab(t_data *data);
 int		is_texture(t_data *data, char *s);
-void	find_map(t_data *data, char **argv);
 int		check_colors(int *tab);
 int		split_colors(t_data *data);
-void	find_max_len(t_data *data, char **argv);
-void	find_end_map(t_data *data, char **argv);
 int		is_color(t_data *data, char *s);
 int		get_positions_start(t_data *data, char **argv);
 int		is_texture_3(char *s);

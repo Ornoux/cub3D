@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:20:35 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/19 19:42:31 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/20 14:39:55 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	*ft_img(t_data *data, char *name)
 	void	*new;
 
 	new = mlx_xpm_file_to_image(data->mlx_ptr, name, &a, &a);
-	if (!new) {
-		exit(0);}
+	if (!new)
+		exit(0);
 	return (new);
 }
 
@@ -39,24 +39,23 @@ void	init_mlx(t_data *data)
 	mlx_loop(data->mlx_ptr);
 }
 
-
-
 void	init(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
 	init_my_texturess(data);
 	data->img->img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp, &data->img->size_line, &data->img->endian);
+	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp, \
+	&data->img->size_line, &data->img->endian);
 	data->key = ft_calloc(6, sizeof(int));
 }
 
 int	mlx(t_data *data)
 {
 	data->img = ft_calloc(1, sizeof(t_image));
-	data->n_texture = ft_calloc(1, sizeof(t_image));
-	data->s_texture = ft_calloc(1, sizeof(t_image));
-	data->w_texture = ft_calloc(1, sizeof(t_image));
-	data->e_texture = ft_calloc(1, sizeof(t_image));
+	data->n = ft_calloc(1, sizeof(t_image));
+	data->s = ft_calloc(1, sizeof(t_image));
+	data->w = ft_calloc(1, sizeof(t_image));
+	data->e = ft_calloc(1, sizeof(t_image));
 	init(data);
 	if (init_my_texturess(data) == 1)
 		return (print_error("textures"));

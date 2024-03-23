@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:16:03 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/18 16:17:09 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:23:43 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	is_good_char(t_data *data, char c, int x, int y)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
-		
 		data->player++;
 		data->posi_x = x;
 		data->posi_y = y;
@@ -26,7 +25,7 @@ int	is_good_char(t_data *data, char c, int x, int y)
 		|| c == 'W' || c == 'E' || c == '1'
 		|| c == '0')
 		return (0);
-	return (1);	
+	return (1);
 }
 
 int	error_into_file(t_data *data, char **argv)
@@ -87,35 +86,3 @@ int	is_player(char c)
 		return (1);
 	return (0);
 }
-
-int	char_valid(char c)
-{
-	if (c != '1' && c != '0' && c != 'S'
-		&& c != 'E' && c != 'W' && c != 'N')
-		return (1);
-	return (0);
-}
-
-
-int	check_player(char **map, int i, int j)
-{
-	if ((is_player(map[i][j]) && map[i + 1][j] == ' ')
-			|| (is_player(map[i][j]) && char_valid(map[i - 1][j]))
-			|| (is_player(map[i][j]) && char_valid(map[i][j + 1]))
-			|| (is_player(map[i][j]) && char_valid(map[i][j - 1])))
-		return (1);
-	return (0);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char *)s)[i] = 0;
-		i++;
-	}
-}
-

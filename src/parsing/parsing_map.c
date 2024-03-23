@@ -6,21 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:37:38 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/19 09:43:48 by npatron          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../cub3D.h"
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing_map.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 18:37:38 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/19 01:28:28 by nicolas          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:03:31 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +45,6 @@ int	get_positions_start(t_data *data, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	s = get_next_line(fd);
 	data->start = 1;
-	if (!s)
-		return (1);
 	while (s)
 	{
 		if (is_texture_3(s) >= 1 || is_color_2(s) >= 1)
@@ -78,35 +62,6 @@ int	get_positions_start(t_data *data, char **argv)
 		data->start++;
 	}
 	return (get_positions_end(data, fd, s));
-}
-
-void	len_max_map(t_data *data, char **argv)
-{
-	int		len;
-	int		fd;
-	char	*s;
-	int		i;
-
-	len = 0;
-	fd = open(argv[1], O_RDONLY);
-	s = get_next_line(fd);
-	i = 0;
-	while (i <= data->start)
-	{
-		s = get_next_line(fd);
-		i++;
-	}
-	if (!s)
-		return ;
-	while (i != data->end)
-	{
-		if (len < ft_strlen(s))
-			len = ft_strlen(s);
-		s = get_next_line(fd);
-		i++;
-	}
-	data->len_max = len;
-	data->start_2 = data->start;
 }
 
 void	get_map(t_data *data, char **argv)
@@ -129,7 +84,7 @@ void	get_map(t_data *data, char **argv)
 	while (data->start <= data->end)
 	{
 		data->map[i] = copy_string(s, data->len_max);
-		s = get_next_line(fd);	
+		s = get_next_line(fd);
 		i++;
 		data->start++;
 	}
@@ -137,6 +92,7 @@ void	get_map(t_data *data, char **argv)
 	i++;
 	data->map[i] = NULL;
 }
+
 int	good_letters(t_data *data, char **tab)
 {
 	int	i;
@@ -163,7 +119,7 @@ int	is_valid_map(t_data *data)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	if (good_letters(data, data->map))
 		return (1);
@@ -181,7 +137,7 @@ int	is_valid_map(t_data *data)
 				return (1);
 			j++;
 		}
-		i++;		
+		i++;
 	}
 	return (0);
 }

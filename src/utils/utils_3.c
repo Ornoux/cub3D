@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:03:40 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/06 18:36:13 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:20:28 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	print_int_tab(int *tab)
 	}
 }
 
-
 int	is_texture_3(char *s)
 {
 	int	i;
@@ -81,4 +80,3 @@ int	is_color_2(char *s)
 		return (2);
 	return (0);
 }
-

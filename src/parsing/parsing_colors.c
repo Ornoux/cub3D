@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:44:41 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/06 18:15:34 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/19 20:49:58 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,16 @@ int	condition_color(t_data *data)
 	return (1);
 }
 
+int	fill_colors_tab(char **tab, t_data *data, int i, char *s)
+{
+	if (jump_line(s) == 0 && is_color(data, s) == 1)
+	{
+		tab[i] = s;
+		return (1);
+	}
+	return (0);
+}
+
 int	get_colors(t_data *data, char **argv)
 {
 	int		i;
@@ -72,15 +82,9 @@ int	get_colors(t_data *data, char **argv)
 	s = get_next_line(fd);
 	while (s)
 	{
-		if (jump_line(s) == 0 && is_color(data, s) == 1)
-		{
-			data->colors[i] = s;
-			i++;
-		}
+		i += fill_colors_tab(data->colors, data, i, s);
 		s = get_next_line(fd);
 		count++;
-		if (i == 2)
-			break ;
 	}
 	data->colors[i] = NULL;
 	if (condition_color(data) == 1)

@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:19:58 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/19 20:02:35 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/20 14:38:18 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,29 @@
 
 int	init_my_texturess(t_data *data)
 {
-	data->n_texture->img = mlx_xpm_file_to_image(data->mlx_ptr, data->textures[0], &data->n_texture->width, &data->n_texture->height);
-	if (!data->n_texture->img)
+	data->n->img = mlx_xpm_file_to_image(data->mlx_ptr, data->textures[0], \
+	&data->n->width, &data->n->height);
+	if (!data->n->img)
 		return (1);
-	data->n_texture->addr = mlx_get_data_addr(data->n_texture->img, &data->n_texture->bpp, &data->n_texture->size_line, &data->n_texture->endian);
-	data->s_texture->img = mlx_xpm_file_to_image(data->mlx_ptr, data->textures[1], &data->s_texture->width, &data->s_texture->height);
-	if (!data->s_texture->img)
+	data->n->addr = mlx_get_data_addr(data->n->img, &data->n->bpp, \
+	&data->n->size_line, &data->n->endian);
+	data->s->img = mlx_xpm_file_to_image(data->mlx_ptr, data->textures[1], \
+	&data->s->width, &data->s->height);
+	if (!data->s->img)
 		return (1);
-	data->s_texture->addr = mlx_get_data_addr(data->s_texture->img, &data->s_texture->bpp, &data->s_texture->size_line, &data->s_texture->endian);
-	data->w_texture->img = mlx_xpm_file_to_image(data->mlx_ptr, data->textures[2], &data->w_texture->width, &data->w_texture->height);
-	if (!data->w_texture->img)
+	data->s->addr = mlx_get_data_addr(data->s->img, &data->s->bpp, \
+	&data->s->size_line, &data->s->endian);
+	data->w->img = mlx_xpm_file_to_image(data->mlx_ptr, data->textures[2], \
+	&data->w->width, &data->w->height);
+	if (!data->w->img)
 		return (1);
-	data->w_texture->addr = mlx_get_data_addr(data->w_texture->img, &data->w_texture->bpp, &data->w_texture->size_line, &data->w_texture->endian);
-	data->e_texture->img = mlx_xpm_file_to_image(data->mlx_ptr, data->textures[3], &data->e_texture->width, &data->e_texture->height);
-	if (!data->e_texture->img)
+	data->w->addr = mlx_get_data_addr(data->w->img, &data->w->bpp, \
+	&data->w->size_line, &data->w->endian);
+	data->e->img = mlx_xpm_file_to_image(data->mlx_ptr, data->textures[3], \
+	&data->e->width, &data->e->height);
+	if (!data->e->img)
 		return (1);
-	data->e_texture->addr = mlx_get_data_addr(data->e_texture->img, &data->e_texture->bpp, &data->e_texture->size_line, &data->e_texture->endian);
+	data->e->addr = mlx_get_data_addr(data->e->img, &data->e->bpp, \
+	&data->e->size_line, &data->e->endian);
 	return (0);
 }

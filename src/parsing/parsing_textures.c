@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 15:01:32 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/07 17:54:53 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:12:57 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@ int	condition_texture(t_data *data)
 	return (1);
 }
 
+int	fill_textures_tab(char **tab, t_data *data, int i, char *s)
+{
+	if (jump_line(s) == 0 && is_texture(data, s) == 1)
+	{
+		tab[i] = s;
+		return (1);
+	}
+	return (0);
+}
+
 int	get_textures(t_data *data, char **argv)
 {
 	int		i;
@@ -71,17 +81,9 @@ int	get_textures(t_data *data, char **argv)
 	s = get_next_line(fd);
 	while (s)
 	{
-		if (jump_line(s) == 0 && is_texture(data, s) == 1)
-		{
-			data->textures[i] = s;
-			i++;
-		}
-		if (file_in_order(s) == 1)
-			return (1);
+		i += fill_textures_tab(data->textures, data, i, s);
 		s = get_next_line(fd);
 		count++;
-		if (i == 4)
-			break ;
 	}
 	data->textures[i] = NULL;
 	if (condition_texture(data) == 1)
@@ -92,7 +94,3 @@ int	get_textures(t_data *data, char **argv)
 	close(fd);
 	return (0);
 }
-
-
-
-

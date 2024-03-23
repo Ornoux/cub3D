@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:40:13 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/06 17:41:22 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:22:02 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ int	there_is_spaces(char *s)
 		i++;
 	}
 	return (0);
+}
+
+void	erase_spaces_2(char *replace, char *s, int i, int j)
+{
+	while (s[i])
+	{
+		while (s[i] == ' ')
+			i++;
+		replace[j] = s[i];
+		i++;
+		j++;
+	}
 }
 
 char	*erase_spaces(char *s)
@@ -46,15 +58,23 @@ char	*erase_spaces(char *s)
 	replace = malloc(sizeof(char) * (len + 1));
 	i = 0;
 	j = 0;
-	while (s[i])
-	{
-		while (s[i] == ' ')
-			i++;
-		replace[j] = s[i];
-		i++;
-		j++;
-	}
+	erase_spaces_2(replace, s, i, j);
 	replace[j] = '\0';
 	return (replace);
 }
 
+char	*line(int n)
+{
+	int		i;
+	char	*s;
+
+	i = 0;
+	s = malloc(sizeof(char) * (n + 3));
+	while (i != n + 1)
+	{
+		s[i] = ' ';
+		i++;
+	}
+	s[i] = '\0';
+	return (s);
+}

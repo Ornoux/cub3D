@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:39:03 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/19 15:35:06 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/20 17:57:03 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	define_rota(t_data *data)
 {
 	if (data->pl == 'N' || data->pl == 'E')
 		data->rota = (PI / 4);
-	else if (data->pl == 'S' || data->pl =='W')
+	else if (data->pl == 'S' || data->pl == 'W')
 		data->rota = -(PI / 4);
 	else
 		return ;
@@ -57,7 +57,7 @@ void	define_angle(t_data *data)
 	{
 		data->p.plane_x = 0.66;
 		data->p.plane_y = 0;
-	}	
+	}
 }
 
 void	init_raycast(t_data *data) // OK

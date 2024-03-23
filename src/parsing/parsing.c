@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:06:50 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/15 13:53:08 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:08:16 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,3 +65,31 @@ int	check_colors(int *tab)
 	return (0);
 }
 
+void	len_max_map(t_data *data, char **argv)
+{
+	int		len;
+	int		fd;
+	char	*s;
+	int		i;
+
+	len = 0;
+	fd = open(argv[1], O_RDONLY);
+	s = get_next_line(fd);
+	i = 0;
+	while (i <= data->start)
+	{
+		s = get_next_line(fd);
+		i++;
+	}
+	if (!s)
+		return ;
+	while (i != data->end)
+	{
+		if (len < ft_strlen(s))
+			len = ft_strlen(s);
+		s = get_next_line(fd);
+		i++;
+	}
+	data->len_max = len;
+	data->start_2 = data->start;
+}

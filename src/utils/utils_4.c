@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:08:32 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/19 19:35:35 by npatron          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:22:23 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,21 +103,5 @@ char	*copy_string(char *s, int n)
 		i++;
 	}
 	dest[i] = '\0';
-	return (dest);	
-}
-
-char	*line(int n)
-{
-	int		i;
-	char	*s;
-
-	i = 0;
-	s = malloc(sizeof(char) * (n + 3));
-	while (i != n + 1)
-	{
-		s[i] = ' ';
-		i++;
-	}
-	s[i] = '\0';
-	return (s);
+	return (dest);
 }

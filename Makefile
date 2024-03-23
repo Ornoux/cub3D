@@ -6,7 +6,7 @@
 #    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 14:20:24 by npatron           #+#    #+#              #
-#    Updated: 2024/03/19 10:42:51 by npatron          ###   ########.fr        #
+#    Updated: 2024/03/20 18:25:02 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,16 @@ SOURCES = src/main.c \
       src/utils/ft_split.c \
       src/utils/utils_4.c \
       src/utils/utils_5.c \
+      src/utils/utils_6.c \
       src/mlx/init_mlx.c \
       src/mlx/mlx_utils.c \
       src/mlx/create_img.c \
       src/mini_map/mini_map.c \
-      src/mini_map/utils_minimap.c \
       src/raycasting/init_player_position.c \
       src/raycasting/raycasting.c \
+      src/raycasting/raycasting_3.c \
+      src/raycasting/raycasting_2.c \
+      src/mlx/moves.c \
 
 NAME     = cub3d
 OBJECTS  = ${SOURCES:.c=.o}
