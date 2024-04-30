@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:59:32 by npatron           #+#    #+#             */
-/*   Updated: 2024/03/22 19:15:28 by npatron          ###   ########.fr       */
+/*   Updated: 2024/04/30 18:58:13 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	refresh_map(t_data *data)
 	}
 }
 
-void	key_press_2(int key, t_data *data)
+void	key_press_2(t_data *data)
 {
 	data->p.old_dir = data->p.dirp_x;
 	data->p.dirp_x = data->p.dirp_x * cos(ROTATION * data->rota) - \
@@ -53,7 +53,7 @@ int	key_press(int key, t_data *data)
 	refresh_map(data);
 	moves_forward_backward_left(data, key);
 	moves_sides(data, key);
-	if (key == 65363)
+	if (key == 65363) // DROITE
 	{
 		data->p.old_dir = data->p.dirp_x;
 		data->p.dirp_x = data->p.dirp_x * cos(-ROTATION * data->rota) - \
@@ -66,7 +66,8 @@ int	key_press(int key, t_data *data)
 		data->p.plane_y = data->p.old_plane * sin(-ROTATION * data->rota) + \
 		data->p.plane_y * cos(-ROTATION * data->rota);
 	}
-		
+	else if (key == 65361)
+		key_press_2(data);
 	return (0);
 }
 
